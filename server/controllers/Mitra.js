@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const salt = bcrypt.genSaltSync(10);
 require('dotenv').config()
 
-class MitraClass {
+class Mitra {
   constructor() {
 
   }
@@ -137,4 +137,4 @@ class MitraClass {
 
 }
 
-module.exports = MitraClass;
+module.exports = Mitra;
