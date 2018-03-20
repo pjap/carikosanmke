@@ -14,6 +14,6 @@ let barangKosanSchema = new Schema({
   tanggalBuang: { type:Date }
 }, { timestamps: true })
 
-let barangKosanModel = mongoose.model('barangKosan', barangKosanSchema)
+let barangKosan = mongoose.model('barangKosan', barangKosanSchema)
 
-module.exports = barangKosanModel;
+module.exports = barangKosan;

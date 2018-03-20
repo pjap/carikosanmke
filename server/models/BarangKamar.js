@@ -11,6 +11,6 @@ let barangKamarSchema = new Schema ({
   }
 }, { timestamps: true })
 
-let barangKamarModel = mongoose.model('barangKamar', barangKamarSchema)
+let barangKamar = mongoose.model('barangKamar', barangKamarSchema)
 
-module.exports = barangKamarModel;
+module.exports = barangKamar;

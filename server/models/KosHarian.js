@@ -24,6 +24,6 @@ let kosHarianSchema = new Schema({
   JenisBayar: { type:String, default:'cash' }
 }, { timestamps: true})
 
-let kosHarianModel = mongoose.model('kosHarian', kosHarianSchema)
+let kosHarian = mongoose.model('kosHarian', kosHarianSchema)
 
-module.exports = kosHarianModel;
+module.exports = kosHarian;
