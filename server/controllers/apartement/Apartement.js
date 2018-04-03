@@ -1,17 +1,17 @@
-console.log('models KOSAN\n');
+console.log('controllers APARTEMENT\n');
 
-const KosanModel = require('../models/Kosan');
-// const redis = require('redis');
+const ApartementModel = require('../models/apartement/Apartement');
+const redis = require('redis');
 
-class Kosan {
+class Apartement {
   constructor() {
 
   }
 
-  static findAllKosan(req, res) {
-    KosanModel.find({}).populate('mitraId', 'username phone email')
-    .then(dataKosan => {
-      res.send(dataKosan)
+  static findAllApartement(req, res) {
+    ApartementModel.find({}).populate('mitraId', 'username phone email')
+    .then(dataApartement => {
+      res.send(dataApartement)
     })
     .catch(err => {
       console.log(err);
@@ -19,8 +19,8 @@ class Kosan {
     })
   }
 
-  static createKosan(req, res) {
-    KosanModel.create({
+  static createApartement(req, res) {
+    ApartementModel.create({
       mitraId: req.body.mitraId,
       name: req.body.name,
       // fotoKosan: req.file.cloudStoragePublicUrl,
@@ -35,9 +35,10 @@ class Kosan {
       pengurusNama: req.body.pengurusNama,
       pengurusEmail: req.body.pengurusEmail,
       pengurusKTP: req.file.cloudStoragePublicUrl,
-      statusKepemilikan: req.body.statusKepemilikan
+      statusKepemilikan: req.body.statusKepemilikan,
+      fasilitas: req.body.fasilitas
     })
-    .then(dataKosan => {
+    .then(dataApartement => {
       res.send(dataKosan)
     })
     .catch(err => {
@@ -46,18 +47,18 @@ class Kosan {
     })
   }
 
-  static findOneKosan(req, res) {
-    KosanModel.findOne({ _id: req.params.id })
-    .then(dataKosan => {
-      res.send(dataKosan)
+  static findOneApartement(req, res) {
+    ApartementModel.findOne({ _id: req.params.id })
+    .then(dataApartement => {
+      res.send(dataApartement)
     })
     .catch(err => {
       res.send(err)
     })
   }
 
-  static updateKosan(req, res) {
-    KosanModel.findOneAndUpdate({ _id: req.params.id}, {
+  static updateApartement(req, res) {
+    ApartementModel.findOneAndUpdate({ _id: req.params.id }, {
       $set: {
         mitraId: req.body.mitraId,
         name: req.body.name,
@@ -71,37 +72,21 @@ class Kosan {
         pengurusEmail: req.body.pengurusEmail,
         pengurusKTP: req.file.cloudStoragePublicUrl,
         statusKepemilikan: req.body.statusKepemilikan
-      }
+      },
+      $addtoset: { fasilitas: req.body.fasilitas }
     }, { new: true })
-    .then(dataKosan => {
-      res.send({
-        msg: ' Update Success !',
-        data: dataKosan
-      })
+    .then(dataApartement => {
+      res.send(dataApartement)
     })
     .catch(err => {
       res.send(err)
     })
   }
 
-  static tambahKamarKosan(req, res) {
-    KosanModel.findOneAndUpdate({ _id: req.params.id}, { $addtoset: { kamarList: req.body.kamarId}},
-    { new: true })
-    .then(dataKosan => {
-      res.send({
-        msg: ' Sukses Menambah Data Kamar',
-        data: dataKosan
-      })
-    })
-    .catch(err => {
-      res.send(err)
-    })
-  }
-
-  static deleteKosan(req, res) {
-    KosanModel.findOneAndRemove({ _id: req.params.id })
-    .then(dataKosan => {
-      res.send(dataKosan)
+  static deleteApartement(req, res) {
+    ApartementModel.findOneAndRemove({ _id: req.params.id})
+    .then(dataApartement => {
+      res.send(dataApartement)
     })
     .catch(err => {
       res.send(err)
@@ -110,4 +95,4 @@ class Kosan {
 
 }
 
-module.exports = Kosan;
+module.exports = Apartement;

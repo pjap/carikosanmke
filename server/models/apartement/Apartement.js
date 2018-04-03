@@ -28,9 +28,6 @@ let apartementSchema = new Schema({
   // pengurusKTP: { type: String, required: true},
   statusKepemilikan: {type:String},
   fasilitas: [],
-  price: { type: Number, required: true },
-  available: {type: Boolean, default:true},
-  promo: [],
   penyewa: {
       type: Schema.Types.ObjectId,
       ref: 'penyewa',

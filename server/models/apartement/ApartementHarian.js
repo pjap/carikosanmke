@@ -27,3 +27,5 @@ let apartementHarianSchema = new Schema({
 let apartementHarian = mongoose.model('apartementHarian', apartementHarianSchema)
 
 module.exports = apartementHarian;
+
+// B0rg_cub3
